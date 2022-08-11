@@ -1,0 +1,27 @@
+.pokemonCard {
+  width: 200px;
+  height: 250px;
+  border: 1px solid black;
+}
+
+.pokemonCard .title {
+  padding: 0 10px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.pokemonCard .title .starIcon:hover {
+  color: #3484f0;
+  cursor: pointer;
+}
+.pokemonCard .title .starIcon-filled {
+  color: gold;
+  cursor: pointer;
+}
+.pokemonCard .title .starIcon-filled:hover {
+  color: #3484f0;
+  cursor: pointer;
+}

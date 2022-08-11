@@ -14,4 +14,4 @@ const uiSlice = createSlice({
   },
 });
 
-export { uiSlice };
+export default uiSlice.reducer;
