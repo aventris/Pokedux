@@ -1,0 +1,22 @@
+.searcher {
+  width: 80%;
+  max-width: 700px;
+  height: 30px;
+  display: flex;
+  margin: 20px auto;
+}
+
+.searcher input {
+  border: 1px solid black;
+  width: 100%;
+}
+.searcher input:hover {
+  border: 1px solid var(--blue-hover);
+  /*   border: 1px solid red */
+}
+
+.searcher button {
+  height: 100%;
+  width: 60px;
+  background-color: none;
+}

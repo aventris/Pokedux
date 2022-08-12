@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: false,
+  details: false,
 };
 
 const uiSlice = createSlice({
@@ -14,4 +15,5 @@ const uiSlice = createSlice({
   },
 });
 
+export const { setLoading } = uiSlice.actions;
 export default uiSlice.reducer;

@@ -1,5 +1,9 @@
 .types {
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: end;
+  margin: 10px 0;
 }
 
 .types li {
@@ -14,15 +18,7 @@
   font-size: 0.8rem;
   color: white;
 }
-/* button {
-  height: 50px;
-  width: 50px;
-  outline: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-family: inherit;
-} */
+
 .types .normal {
   background-color: #a8a878;
 }

@@ -1,6 +1,5 @@
 .pokemonCard {
-  width: 200px;
-  height: 250px;
+  width: 100%;
   border: 1px solid black;
 }
 
@@ -22,6 +21,6 @@
   cursor: pointer;
 }
 .pokemonCard .title .starIcon-filled:hover {
-  color: #3484f0;
+  color: var(--blue-hover);
   cursor: pointer;
 }

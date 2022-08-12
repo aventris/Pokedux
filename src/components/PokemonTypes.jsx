@@ -25,14 +25,12 @@ const mapTypes = {
 
 const PokemonTypes = ({ types }) => {
   const typesArray = types.map((type) => type.type.name);
-  console.log(typesArray);
   return (
     <div className="types">
-      {typesArray.map((type) => (
-        <>
-          <li className={type}>{type}</li>
-          {/* <button className={type}>{type}</button> */}
-        </>
+      {typesArray.map((type, index) => (
+        <li className={type} key={index}>
+          {type}
+        </li>
       ))}
     </div>
   );

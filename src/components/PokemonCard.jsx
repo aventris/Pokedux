@@ -1,19 +1,25 @@
 import { StarOutlined, StarFilled } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { setFavorite } from "../reducers/pokemonSlice";
 import "../styles/PokemonCard.css";
 import PokemonTypes from "./PokemonTypes";
 
 const PokemonCard = ({ data }) => {
-  const random = () => {
-    return Math.random() > 0.5 ? true : false;
+  if (data.id === 1) console.log(data);
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    dispatch(setFavorite(data.id));
   };
+
   return (
     <div className="pokemonCard">
       <div className="title">
         <p>{data.name}</p>
-        {random() ? (
-          <StarOutlined className="starIcon" />
+        {!data.favorite ? (
+          <StarOutlined className="starIcon" onClick={handleFavorite} />
         ) : (
-          <StarFilled className="starIcon-filled" />
+          <StarFilled className="starIcon-filled" onClick={handleFavorite} />
         )}
       </div>
       <div className="sprite">
