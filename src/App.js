@@ -5,17 +5,19 @@ import { fetchPokemons } from "./reducers/pokemonSlice";
 import PokemonCard from "./components/PokemonCard";
 import PokemonList from "./components/PokemonList";
 import Searcher from "./components/Searcher";
+import PokemonDetails from "./components/PokemonDetails";
+import Modal from "./components/Modal";
 
-import { Loading3QuartersOutlined, LoadingOutlined } from "@ant-design/icons";
+import { Loading3QuartersOutlined } from "@ant-design/icons";
 import logo from "./assets/icons/logo.svg";
 import "./styles/App.css";
 import "./styles/Loader.css";
-import Modal from "./components/Modal";
 
 function App() {
   const allPokemons = useSelector((state) => state.pokemon.pokemons);
   const search = useSelector((state) => state.pokemon.searchText);
   const loading = useSelector((state) => state.ui.loading);
+  const pokemonDetails = useSelector((state) => state.ui.details);
 
   const getVisiblePokemons = (pokemons, search) => {
     if (search) {
@@ -52,8 +54,13 @@ function App() {
               <PokemonCard data={pokemon} key={pokemon.id} />
             ))}
           </PokemonList>
-          <Modal />
         </React.Fragment>
+      )}
+
+      {pokemonDetails.isOpen && (
+        <Modal>
+          <PokemonDetails pokemonId={pokemonDetails.id} />
+        </Modal>
       )}
     </div>
   );

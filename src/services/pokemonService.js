@@ -11,7 +11,7 @@ const getPokemonList = async () => {
   }
 };
 
-const getPokemonDetails = async (url) => {
+const getShortPokemonDetails = async (url) => {
   try {
     const res = await axios.get(url);
     const pokemonDetailsRaw = res.data;
@@ -27,5 +27,14 @@ const getPokemonDetails = async (url) => {
     throw err;
   }
 };
+const getPokemonDetails = async (id) => {
+  try {
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}/`;
+    const res = await axios.get(url);
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
+};
 
-export { getPokemonList, getPokemonDetails };
+export { getPokemonList, getPokemonDetails, getShortPokemonDetails };

@@ -1,19 +1,23 @@
 import { StarOutlined, StarFilled } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { setFavorite } from "../reducers/pokemonSlice";
+import { setDetails } from "../reducers/uiSlice";
 import "../styles/PokemonCard.css";
+
 import PokemonTypes from "./PokemonTypes";
 
 const PokemonCard = ({ data }) => {
-  if (data.id === 1) console.log(data);
   const dispatch = useDispatch();
-
   const handleFavorite = () => {
     dispatch(setFavorite(data.id));
   };
 
+  const toggleDetails = (event) => {
+    event.stopPropagation();
+    dispatch(setDetails({ isOpen: true, id: data.id }));
+  };
   return (
-    <div className="pokemonCard">
+    <div className="pokemonCard" onClick={toggleDetails}>
       <div className="title">
         <p>{data.name}</p>
         {!data.favorite ? (
