@@ -12,6 +12,10 @@
   border-bottom: 1px solid black;
 }
 
+.pokemonCard .sprite {
+  cursor: pointer;
+}
+
 .pokemonCard .title .starIcon:hover {
   color: #3484f0;
   cursor: pointer;

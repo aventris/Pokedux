@@ -18,15 +18,19 @@ function App() {
   const search = useSelector((state) => state.pokemon.searchText);
   const loading = useSelector((state) => state.ui.loading);
   const pokemonDetails = useSelector((state) => state.ui.details);
+  const favoriteFilter = useSelector((state) => state.pokemon.favoriteFilter);
 
   const getVisiblePokemons = (pokemons, search) => {
+    let newPokemonList = [];
+    if (favoriteFilter)
+      newPokemonList = pokemons.filter((pokemon) => pokemon.favorite);
+    else newPokemonList = pokemons;
     if (search) {
-      const filteredPokemons = pokemons.filter((pokemon) =>
+      const filteredPokemons = newPokemonList.filter((pokemon) =>
         pokemon.name.includes(search)
       );
-      console.log(filteredPokemons);
       return filteredPokemons;
-    } else return pokemons;
+    } else return newPokemonList;
   };
 
   const dispatch = useDispatch();

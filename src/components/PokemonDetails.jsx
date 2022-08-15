@@ -1,19 +1,22 @@
 import { Loading3QuartersOutlined } from "@ant-design/icons";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchPokemonDetails,
-  setDetailedPokemon,
-} from "../reducers/pokemonSlice";
+import { fetchPokemonDetails } from "../reducers/pokemonSlice";
 import "../styles/PokemonDetails.css";
 import { CloseOutlined } from "@ant-design/icons";
-import { setDetails } from "../reducers/uiSlice";
+import {
+  setDetails,
+  setSpriteGender,
+  setSpriteType,
+} from "../reducers/uiSlice";
 import { useRef } from "react";
 
 const PokemonDetails = ({ pokemonId }) => {
   const elementRef = useRef(null);
   const loading = useSelector((state) => state.ui.loadingDetails);
   const pokemon = useSelector((state) => state.pokemon.detailedPokemon);
+  const gender = useSelector((state) => state.ui.spriteGender);
+  const type = useSelector((state) => state.ui.spriteType);
   const dispatch = useDispatch();
 
   const toggleDetails = () => {
@@ -29,10 +32,24 @@ const PokemonDetails = ({ pokemonId }) => {
     document.addEventListener("click", handleClick);
 
     dispatch(fetchPokemonDetails(pokemonId));
-
+    dispatch(setSpriteGender("male"));
+    dispatch(setSpriteType("normal"));
     return () => document.removeEventListener("click", handleClick);
   }, []);
 
+  const handleGender = (newGender) => {
+    dispatch(setSpriteGender(newGender));
+    dispatch(setSpriteType("normal"));
+  };
+
+  const handleType = (newType) => {
+    dispatch(setSpriteType(newType));
+  };
+
+  const isVisible = (spriteGender, spriteType) => {
+    if (gender === spriteGender && type === spriteType) return "";
+    return " hidden";
+  };
   return (
     <div className="pokemonDetails" ref={elementRef}>
       {loading ? (
@@ -41,30 +58,104 @@ const PokemonDetails = ({ pokemonId }) => {
         </div>
       ) : (
         <div>
-          <h3>{pokemon.name}</h3>
-          <CloseOutlined onClick={toggleDetails} />
-          <div className="sprites">
-            <div className="genderSelector"></div>
-            <div>
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-              <img src={pokemon.sprites.back_default} alt={pokemon.name} />
-              <img src={pokemon.sprites.front_female} alt={pokemon.name} />
-              <img src={pokemon.sprites.back_female} alt={pokemon.name} />
-              <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />
-              <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />
-              <img
-                src={pokemon.sprites.front_shiny_female}
-                alt={pokemon.name}
-              />
-              <img src={pokemon.sprites.back_shiny_female} alt={pokemon.name} />
+          <h1 className="title">{pokemon.name}</h1>
+          <CloseOutlined className="closeIcon" onClick={toggleDetails} />
+
+          <div className="spriteWrapper">
+            <div className="sprites">
+              <div className={"front" + isVisible("male", "normal")}>
+                <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+                <img src={pokemon.sprites.back_default} alt={pokemon.name} />
+              </div>
+
+              {pokemon.sprites.front_shiny && (
+                <div className={"front" + isVisible("male", "shiny")}>
+                  <img src={pokemon.sprites.front_shiny} alt={pokemon.name} />
+                  <img src={pokemon.sprites.back_shiny} alt={pokemon.name} />
+                </div>
+              )}
+
+              {pokemon.sprites.front_female && (
+                <div className={"front" + isVisible("female", "normal")}>
+                  <img src={pokemon.sprites.front_female} alt={pokemon.name} />
+                  <img src={pokemon.sprites.back_female} alt={pokemon.name} />
+                </div>
+              )}
+
+              {pokemon.sprites.front_shiny_female && (
+                <div className={"front" + isVisible("female", "shiny")}>
+                  <img
+                    src={pokemon.sprites.front_shiny_female}
+                    alt={pokemon.name}
+                  />
+                  <img
+                    src={pokemon.sprites.back_shiny_female}
+                    alt={pokemon.name}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="spriteFilter">
+              <div className="gender">
+                <button
+                  className={gender === "male" ? " active" : "puto"}
+                  onClick={() => handleGender("male")}
+                >
+                  Male
+                </button>
+                {pokemon.sprites.front_female && (
+                  <button
+                    className={gender === "female" ? " active" : ""}
+                    onClick={() => handleGender("female")}
+                  >
+                    Female
+                  </button>
+                )}
+              </div>
+
+              <div className="type">
+                <button
+                  className={type === "normal" ? " active" : ""}
+                  onClick={() => handleType("normal")}
+                >
+                  Normal
+                </button>
+                <button
+                  className={type === "shiny" ? " active" : ""}
+                  onClick={() => handleType("shiny")}
+                >
+                  Shiny
+                </button>
+              </div>
             </div>
             <div className="stats">
-              {pokemon.stats.map((stat, index) => (
-                <React.Fragment key={index}>
-                  <span>{stat.stat.name + ": "}</span>
-                  <span>{stat.base_stat}</span>
-                </React.Fragment>
-              ))}
+              <h3>Stats</h3>
+              <div className="statsWrapper">
+                <ul>
+                  {pokemon.stats.map((stat, index) => (
+                    <li key={index}>
+                      <span>{stat.stat.name + ": "}</span>
+                      <span>{stat.base_stat}</span>
+                    </li>
+                  ))}
+                </ul>
+                <ul>
+                  <li>id: {pokemon.id}</li>
+                  <li>height: {pokemon.height / 10} m</li>
+                  <li>weight: {pokemon.weight / 10} kg</li>
+                </ul>
+              </div>
+            </div>
+            <div className="abilities">
+              <h3>Abilities</h3>
+              <ul>
+                {pokemon.abilities.map((ability) => (
+                  <li key={ability.ability.name}>
+                    {ability.ability.name +
+                      ` ${ability.is_hidden ? "[hidden]" : ""}`}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

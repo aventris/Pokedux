@@ -17,7 +17,7 @@ const PokemonCard = ({ data }) => {
     dispatch(setDetails({ isOpen: true, id: data.id }));
   };
   return (
-    <div className="pokemonCard" onClick={toggleDetails}>
+    <div className="pokemonCard">
       <div className="title">
         <p>{data.name}</p>
         {!data.favorite ? (
@@ -26,7 +26,7 @@ const PokemonCard = ({ data }) => {
           <StarFilled className="starIcon-filled" onClick={handleFavorite} />
         )}
       </div>
-      <div className="sprite">
+      <div className="sprite" onClick={toggleDetails}>
         <img src={data.sprites.front_default} alt={data.name} />
       </div>
       <div className="info">

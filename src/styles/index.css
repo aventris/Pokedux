@@ -10,4 +10,7 @@ html {
 
 :root {
   --blue-hover: #3484f0;
+  --purple-color: #f3ebfa;
+  --purple-active: #934acc;
+  --purple-hover: #c49be4;
 }

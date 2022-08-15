@@ -1,9 +1,10 @@
-import { setSearchText } from "../reducers/pokemonSlice";
-import { SearchOutlined } from "@ant-design/icons";
+import { setSearchText, setFavoriteFilter } from "../reducers/pokemonSlice";
+import { SearchOutlined, HeartFilled } from "@ant-design/icons";
 import "../styles/Searcher.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Searcher = () => {
+  const favoriteFilter = useSelector((state) => state.pokemon.favoriteFilter);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -13,13 +14,33 @@ const Searcher = () => {
     dispatch(setSearchText(inputData));
   };
 
+  const handleFavoriteFilter = (data) => {
+    dispatch(setFavoriteFilter(data));
+  };
   return (
-    <form onSubmit={handleSubmit} className="searcher">
-      <input></input>
-      <button>
-        <SearchOutlined className="sarcher-icon" />
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="searcher">
+        <input></input>
+        <button>
+          <SearchOutlined className="sarcher-icon" />
+        </button>
+      </form>
+      <div className="filter">
+        <button
+          className={favoriteFilter ? "" : "active"}
+          onClick={() => handleFavoriteFilter(false)}
+        >
+          All
+        </button>
+        <button
+          onClick={() => handleFavoriteFilter(true)}
+          className={favoriteFilter ? "active" : ""}
+        >
+          <HeartFilled />
+          Favorites
+        </button>
+      </div>
+    </>
   );
 };
 

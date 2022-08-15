@@ -9,14 +9,44 @@
 .searcher input {
   border: 1px solid black;
   width: 100%;
+  border: 1px solid var(--purple-active);
+  outline-color: var(--purple-active);
 }
 .searcher input:hover {
-  border: 1px solid var(--blue-hover);
   /*   border: 1px solid red */
+  border: 1px solid var(--purple-hover);
 }
 
 .searcher button {
   height: 100%;
   width: 60px;
-  background-color: none;
+  background-color: var(--purple-active);
+  border: none;
+  cursor: pointer;
+}
+.searcher button:hover {
+  background-color: var(--purple-hover);
+}
+.searcher button svg {
+  color: white;
+}
+
+.filter button {
+  padding: 5px 10px;
+  border: none;
+  background-color: transparent;
+  margin-right: 1px;
+  cursor: pointer;
+  background-color: var(--purple-color);
+}
+.filter button.active {
+  background-color: var(--purple-active);
+  color: white;
+}
+.filter button:hover {
+  background-color: var(--purple-hover);
+  color: white;
+}
+.filter button svg {
+  margin: 0 5px;
 }

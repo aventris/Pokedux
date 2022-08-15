@@ -4,6 +4,9 @@ const initialState = {
   loading: false,
   details: { isOpen: false, id: "" },
   loadingDetails: true,
+  spriteGender: "male",
+  spriteType: "normal",
+  test: true,
 };
 
 const uiSlice = createSlice({
@@ -19,8 +22,20 @@ const uiSlice = createSlice({
     setLoadingDetails: (state, action) => {
       state.loadingDetails = action.payload;
     },
+    setSpriteGender: (state, action) => {
+      state.spriteGender = action.payload;
+    },
+    setSpriteType: (state, action) => {
+      state.spriteType = action.payload;
+    },
   },
 });
 
-export const { setLoading, setDetails, setLoadingDetails } = uiSlice.actions;
+export const {
+  setLoading,
+  setDetails,
+  setLoadingDetails,
+  setSpriteGender,
+  setSpriteType,
+} = uiSlice.actions;
 export default uiSlice.reducer;

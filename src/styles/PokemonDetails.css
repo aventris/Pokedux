@@ -1,5 +1,96 @@
 .pokemonDetails {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   height: 600px;
+  padding: 10px;
   background-color: white;
+  position: relative;
+  overflow-y: auto;
+}
+.pokemonDetails .closeIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.pokemonDetails .title {
+  text-align: center;
+  text-transform: capitalize;
+}
+.pokemonDetails .spriteWrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+.pokemonDetails .spriteFilter {
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-top: none;
+}
+
+.pokemonDetails .spriteFilter button {
+  outline: none;
+  border: 1px solid transparent;
+  padding: 5px 0;
+  background-color: var(--purple-color);
+}
+.pokemonDetails .spriteFilter .gender button {
+  width: 100px;
+}
+.pokemonDetails .spriteFilter .type button {
+  width: 80px;
+  margin-top: 1px;
+}
+.pokemonDetails .spriteFilter button.active {
+  background-color: var(--purple-active);
+  color: white;
+}
+.pokemonDetails .spriteFilter button:hover {
+  background-color: var(--purple-hover);
+  border: 1px solid white;
+}
+
+.pokemonDetails .sprites {
+  width: 100%;
+  border: 1px solid black;
+  border-bottom: none;
+  margin: 0 auto;
+}
+.pokemonDetails .sprites div {
+  width: 80%;
+  height: 140px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+}
+.pokemonDetails .sprites div.hidden {
+  display: none;
+}
+.pokemonDetails .stats {
+  border: 1px solid black;
+  border-top: none;
+  padding: 1px;
+}
+
+.pokemonDetails .stats h3 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.pokemonDetails .stats .statsWrapper {
+  display: flex;
+}
+.pokemonDetails .abilities {
+  border: 1px solid black;
+  border-top: none;
+  padding: 1px;
+}
+.pokemonDetails .abilities h3 {
+  margin: 5px;
+  text-align: center;
 }
