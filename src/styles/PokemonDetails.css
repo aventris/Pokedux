@@ -15,6 +15,7 @@
 .pokemonDetails .title {
   text-align: center;
   text-transform: capitalize;
+  color: var(--purple-active);
 }
 .pokemonDetails .spriteWrapper {
   width: 80%;
@@ -77,6 +78,10 @@
   padding: 1px;
 }
 
+.pokemonDetails h3 {
+  color: var(--purple-active);
+}
+
 .pokemonDetails .stats h3 {
   text-align: center;
   margin: 5px 0;
@@ -85,10 +90,26 @@
 .pokemonDetails .stats .statsWrapper {
   display: flex;
 }
+.pokemonDetails .stats .statsWrapper ul {
+  list-style: none;
+}
+.pokemonDetails ul li span:first-child {
+  text-transform: capitalize;
+  color: #524acc;
+}
+.pokemonDetails ul li span:last-child {
+  color: #cc4ac4;
+}
+
 .pokemonDetails .abilities {
   border: 1px solid black;
   border-top: none;
   padding: 1px;
+  color: #524acc;
+}
+.pokemonDetails .abilities ul {
+  list-style: none;
+  text-transform: capitalize;
 }
 .pokemonDetails .abilities h3 {
   margin: 5px;

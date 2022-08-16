@@ -140,9 +140,15 @@ const PokemonDetails = ({ pokemonId }) => {
                   ))}
                 </ul>
                 <ul>
-                  <li>id: {pokemon.id}</li>
-                  <li>height: {pokemon.height / 10} m</li>
-                  <li>weight: {pokemon.weight / 10} kg</li>
+                  <li>
+                    <span>id:</span> <span>{pokemon.id}</span>
+                  </li>
+                  <li>
+                    <span>height:</span> <span>{pokemon.height / 10} m</span>
+                  </li>
+                  <li>
+                    <span>weight:</span> <span>{pokemon.weight / 10} kg</span>
+                  </li>
                 </ul>
               </div>
             </div>

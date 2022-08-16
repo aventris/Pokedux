@@ -10,6 +10,8 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid black;
+  background-color: var(--purple-active);
+  color: white;
 }
 
 .pokemonCard .sprite {
@@ -17,7 +19,7 @@
 }
 
 .pokemonCard .title .starIcon:hover {
-  color: #3484f0;
+  color: #9bc2e4;
   cursor: pointer;
 }
 .pokemonCard .title .starIcon-filled {
