@@ -35,8 +35,9 @@ const PokemonDetails = ({ pokemonId }) => {
     dispatch(setSpriteGender("male"));
     dispatch(setSpriteType("normal"));
     return () => document.removeEventListener("click", handleClick);
+    /* eslint-disable */
   }, []);
-
+  /* eslint-enable */
   const handleGender = (newGender) => {
     dispatch(setSpriteGender(newGender));
     dispatch(setSpriteType("normal"));
